@@ -6,6 +6,8 @@ import Button from "./components/Button";
 
 function App() {
   const [count, setCount] = useState(0);
+  const [isColoured, setIsColoured] = useState(false);
+  const toggleIsColoured = () => setIsColoured(!isColoured);
 
   return (
     <div className="App">
@@ -22,7 +24,18 @@ function App() {
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
-        <Button />
+        <button
+          className={isColoured ? "white-background" : ""}
+          onClick={toggleIsColoured}
+        >
+          Click me!
+        </button>
+        <Button
+          className={isColoured ? "white-background" : ""}
+          onClick={toggleIsColoured}
+        >
+          Click Yes!
+        </Button>
         <p>
           Edit <code>src/App.jsx</code> and save to test HMR
         </p>

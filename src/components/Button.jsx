@@ -1,17 +1,7 @@
-import { useState } from "react";
-import "./Button.css";
-
-function Button() {
-  const [isColoured, setIsColoured] = useState(false);
-
-  const toggleIsColoured = () => setIsColoured(!isColoured);
-
+function Button({ children, onClick, className }) {
   return (
-    <button
-      className={isColoured ? "white-background" : ""}
-      onClick={toggleIsColoured}
-    >
-      Click me!
+    <button className={className} onClick={onClick}>
+      {children}
     </button>
   );
 }
