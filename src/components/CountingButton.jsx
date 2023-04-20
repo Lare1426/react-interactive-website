@@ -1,7 +1,7 @@
 import { useState } from "react";
 import searchIcon from "../assets/searchIcon.png";
 import { Button } from "./";
-import styles from "./CountingButton.module.css";
+import styles from "./CountingButton.module.scss";
 
 function CountingButton() {
   const [count, setCount] = useState(0);

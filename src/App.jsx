@@ -1,7 +1,7 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import styles from "./App.module.css";
+import styles from "./App.module.scss";
 import { Button, CountingButton } from "./components";
 
 function App() {
