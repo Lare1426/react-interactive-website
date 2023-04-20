@@ -1,4 +1,16 @@
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300&family=Open+Sans&display=swap");
+
 :root {
+  --primary: #4d4d4d;
+  --secondary: #ffcc00;
+  --tertiary: #007acc;
+  --text: #efefef;
+
+  font-family: "Open Sans", sans-serif;
+
+  color: #ffffff;
+  background-color: var(--secondary);
+
   font-synthesis: none;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
