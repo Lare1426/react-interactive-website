@@ -1,0 +1,79 @@
+.sidebar-left {
+  margin-left: 50px;
+  width: 500px;
+
+  .banner {
+    width: 500px;
+    margin-bottom: 30px;
+  }
+
+  button {
+    border: 2px solid #fff;
+  }
+
+  .search {
+    width: 480px;
+    height: 150px;
+    background-color: var(--primary);
+    padding: 10px;
+    font-size: 20px;
+
+    h2 {
+      margin: 0;
+      margin-bottom: 15px;
+      text-decoration: underline;
+      text-align: center;
+    }
+
+    input {
+      width: 430px;
+      height: 40px;
+      padding: 5px;
+      border: 2px solid var(--secondary);
+      outline: none;
+      box-sizing: border-box;
+    }
+    input:focus {
+      border: 2px solid var(--tertiary);
+    }
+
+    button {
+      background-color: var(--tertiary);
+      padding: 0;
+      margin: 0;
+      margin-left: 5px;
+      width: 40px;
+      height: 40px;
+      vertical-align: bottom;
+
+      img {
+        width: 25px;
+        vertical-align: middle;
+      }
+    }
+    button:hover {
+      background-color: #007aff;
+      cursor: pointer;
+    }
+
+    .error {
+      margin: 0;
+      margin-left: 10px;
+      height: 30px;
+      font-size: 18px;
+      color: #ff0000;
+    }
+  }
+
+  .bulk-recipe-button {
+    display: block;
+    background-color: var(--primary);
+    margin: 0 auto;
+    margin-top: 25px;
+    width: 350px;
+    height: 50px;
+    font-size: 25px;
+    color: var(--text);
+    box-shadow: 5px 5px 10px 0 var(--primary);
+  }
+}

@@ -1,5 +1,5 @@
+import { Sidebar } from "@/components";
 import styles from "./App.module.scss";
-import satisfactoryPng from "@/assets/satisfactory.png";
 
 function App() {
   return (
@@ -8,10 +8,8 @@ function App() {
         <h1>Satisfactory Recipes</h1>
         <hr></hr>
       </header>
-      <main>
-        <div>
-          <img src={satisfactoryPng} />
-        </div>
+      <main className={styles.appMain}>
+        <Sidebar />
       </main>
     </>
   );
