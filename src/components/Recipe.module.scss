@@ -1,0 +1,16 @@
+h4 {
+  font-size: 20px;
+  margin: 20px 0 0 50px;
+  color: var(--text);
+  user-select: none;
+
+  &:hover {
+    color: #c0c0c0;
+    cursor: pointer;
+  }
+}
+
+.top-level-list {
+  font-size: 20px;
+  margin: 10px 0 0 50px;
+}

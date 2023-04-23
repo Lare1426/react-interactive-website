@@ -32,9 +32,10 @@
       border: 2px solid var(--secondary);
       outline: none;
       box-sizing: border-box;
-    }
-    input:focus {
-      border: 2px solid var(--tertiary);
+
+      &:focus {
+        border: 2px solid var(--tertiary);
+      }
     }
 
     button {
@@ -46,14 +47,15 @@
       height: 40px;
       vertical-align: bottom;
 
+      &:hover {
+        background-color: #007aff;
+        cursor: pointer;
+      }
+
       img {
         width: 25px;
         vertical-align: middle;
       }
-    }
-    button:hover {
-      background-color: #007aff;
-      cursor: pointer;
     }
 
     .error {
@@ -75,5 +77,10 @@
     font-size: 25px;
     color: var(--text);
     box-shadow: 5px 5px 10px 0 var(--primary);
+
+    &:hover {
+      background-color: #3d3d3d;
+      cursor: pointer;
+    }
   }
 }
