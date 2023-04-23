@@ -1,0 +1,14 @@
+.recipes {
+  h3 {
+    font-size: 30px;
+    margin: 20px 0 0 30px;
+    text-decoration: underline;
+    color: var(--text);
+    user-select: none;
+
+    &:hover {
+      color: #c0c0c0;
+      cursor: pointer;
+    }
+  }
+}

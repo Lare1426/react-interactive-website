@@ -10,22 +10,4 @@
     font-size: 40px;
     margin: 20px 0 0 20px;
   }
-
-  h3 {
-    font-size: 30px;
-    margin: 20px 0 0 30px;
-    text-decoration: underline;
-    color: var(--text);
-    user-select: none;
-
-    &:hover {
-      color: #c0c0c0;
-      cursor: pointer;
-    }
-  }
-
-  .top-level-list {
-    font-size: 20px;
-    margin: 10px 0 0 50px;
-  }
 }
