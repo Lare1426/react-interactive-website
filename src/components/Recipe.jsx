@@ -2,7 +2,7 @@ import { useState } from "react";
 import { TriangleSvg } from "@/components";
 import styles from "./Recipe.module.scss";
 
-export default function Recipe() {
+export default function Recipe({ data }) {
   const [isRotated, setIsRotated] = useState(false);
   return (
     <>
@@ -12,28 +12,36 @@ export default function Recipe() {
         }}
       >
         <TriangleSvg small={true} rotated={isRotated} />
-        Battery
+        {data.name}
       </h4>
       <ul className={styles.topLevelList}>
-        <li>Crafting time: 3s</li>
+        <li>Crafting time: {data.time}s</li>
         <li>
-          Produced in
+          Produced in:
           <ul>
-            <li>Blender</li>
+            {data.producedIn.map((machine, index) => (
+              <li key={index}>{machine}</li>
+            ))}
           </ul>
         </li>
         <li>
-          Products
+          Products:
           <ul>
-            <li>Battery (1)</li>
+            {data.products.map((product, index) => (
+              <li key={index}>
+                {product.item} ({product.amount})
+              </li>
+            ))}
           </ul>
         </li>
         <li>
-          Ingredients
+          Ingredients:
           <ul>
-            <li>Sulfuric acis (2.5)</li>
-            <li>Alumina Solution (2)</li>
-            <li>Aluminum Casing (1)</li>
+            {data.ingredients.map((ingredient, index) => (
+              <li key={index}>
+                {ingredient.item} ({ingredient.amount})
+              </li>
+            ))}
           </ul>
         </li>
       </ul>
