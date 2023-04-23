@@ -1,4 +1,4 @@
-import { Sidebar } from "@/components";
+import { Sidebar, Display } from "@/components";
 import styles from "./App.module.scss";
 
 function App() {
@@ -10,6 +10,7 @@ function App() {
       </header>
       <main className={styles.appMain}>
         <Sidebar />
+        <Display />
       </main>
     </>
   );

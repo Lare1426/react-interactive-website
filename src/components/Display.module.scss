@@ -1,0 +1,8 @@
+.display {
+  width: 700px;
+  height: 700px;
+  margin-left: 70px;
+  border: 3px solid var(--primary);
+  background-color: var(--primary);
+  overflow-y: scroll;
+}
