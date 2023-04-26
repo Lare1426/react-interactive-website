@@ -4,9 +4,15 @@ import styles from "./Display.module.scss";
 export default function Display({ data }) {
   return (
     <div className={styles.display}>
-      <h2>{data.itemName}</h2>
-      <Recipes recipes={data.recipes}>Recipes:</Recipes>
-      <Recipes recipes={data.usedIn}>Used in:</Recipes>
+      {data ? (
+        <>
+          <h2>{data.itemName}</h2>
+          <Recipes recipes={data.recipes}>Recipes:</Recipes>
+          <Recipes recipes={data.usedIn}>Used in:</Recipes>
+        </>
+      ) : (
+        ""
+      )}
     </div>
   );
 }

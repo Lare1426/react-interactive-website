@@ -2,7 +2,7 @@ import { useState } from "react";
 import { TriangleSvg, Recipe } from "@/components";
 import styles from "./Recipes.module.scss";
 
-export default function Section({ children, recipes }) {
+export default function Recipes({ children, recipes }) {
   const [isRotated, setIsRotated] = useState(false);
   return (
     <div className={styles.recipes}>
@@ -15,8 +15,8 @@ export default function Section({ children, recipes }) {
         {children}
       </h3>
       <div>
-        {recipes.map((recipe) => (
-          <Recipe data={recipe} />
+        {recipes.map((recipe, index) => (
+          <Recipe key={index} data={recipe} />
         ))}
       </div>
     </div>
