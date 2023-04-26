@@ -16,4 +16,9 @@ const getItemSearch = async (itemName) => {
   return response.json();
 };
 
-export { getItem, getItemSearch };
+const getItems = async () => {
+  const response = await fetch(`${basePath}/items.json`);
+  return response.json();
+};
+
+export { getItem, getItemSearch, getItems };
