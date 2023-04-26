@@ -11,13 +11,16 @@ const getItem = async (itemName) => {
 
 function App() {
   const [item, setItem] = useState();
+  const [itemName, setItemName] = useState();
 
   useEffect(() => {
-    (async () => {
-      const result = await getItem("Screw");
-      setItem(result);
-    })();
-  }, []);
+    if (itemName) {
+      (async () => {
+        const result = await getItem(itemName);
+        setItem(result);
+      })();
+    }
+  }, [itemName]);
 
   return (
     <>
@@ -26,7 +29,7 @@ function App() {
         <hr></hr>
       </header>
       <main className={styles.appMain}>
-        <Sidebar />
+        <Sidebar setItemName={setItemName} />
         <Display data={item} />
       </main>
     </>
