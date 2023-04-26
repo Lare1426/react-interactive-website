@@ -1,13 +1,7 @@
 import { useState, useEffect } from "react";
 import { Sidebar, Display } from "@/components";
+import { getItemSearch } from "@/utils/api";
 import styles from "./App.module.scss";
-
-const getItem = async (itemName) => {
-  const response = await fetch(
-    `https://satisfactory.laurivirta.com/satisfactory-recipes/item/${itemName}`
-  );
-  return response.json();
-};
 
 function App() {
   const [item, setItem] = useState();
@@ -16,7 +10,7 @@ function App() {
   useEffect(() => {
     if (itemName) {
       (async () => {
-        const result = await getItem(itemName);
+        const result = await getItemSearch(itemName);
         setItem(result);
       })();
     }
