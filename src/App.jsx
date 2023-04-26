@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Sidebar, Display } from "@/components";
+import { Sidebar, Display, ItemList } from "@/components";
 import { getItemSearch } from "@/utils/api";
 import styles from "./App.module.scss";
 
@@ -25,6 +25,7 @@ function App() {
       <main className={styles.appMain}>
         <Sidebar setItemName={setItemName} />
         <Display data={item} />
+        <ItemList />
       </main>
     </>
   );
