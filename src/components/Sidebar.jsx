@@ -2,7 +2,7 @@ import { useState } from "react";
 import { satisfactoryPng, searchIconPng } from "@/assets/";
 import styles from "./Sidebar.module.scss";
 
-function Sidebar({ setRequestInfo }) {
+function Sidebar({ setRequestInfo, errorMessage }) {
   const [inputValue, setInputValue] = useState("");
 
   const onInputChange = (event) => {
@@ -35,7 +35,7 @@ function Sidebar({ setRequestInfo }) {
         >
           <img src={searchIconPng} />
         </button>
-        <p className={styles.error}></p>
+        <p className={styles.error}>{errorMessage}</p>
       </div>
       <button className={styles.bulkRecipeButton}>
         Recipes from hard drives

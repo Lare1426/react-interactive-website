@@ -4,10 +4,14 @@ import { getItem, getItemSearch } from "@/utils/api";
 import styles from "./App.module.scss";
 
 function App() {
+  const [errorMessage, setErrorMessage] = useState("");
   const [item, setItem] = useState();
   const [requestInfo, setRequestInfo] = useState();
 
   useEffect(() => {
+    if (errorMessage) {
+      setErrorMessage("");
+    }
     if (requestInfo) {
       (async () => {
         let result;
@@ -16,7 +20,12 @@ function App() {
         } else {
           result = await getItemSearch(requestInfo.itemName);
         }
-        setItem(result);
+        if (result.status == 400) {
+          const { message } = await result.json();
+          setErrorMessage(message);
+          throw new Error(message);
+        }
+        setItem(await result.json());
       })();
     }
   }, [requestInfo]);
@@ -28,7 +37,7 @@ function App() {
         <hr></hr>
       </header>
       <main className={styles.appMain}>
-        <Sidebar setRequestInfo={setRequestInfo} />
+        <Sidebar setRequestInfo={setRequestInfo} errorMessage={errorMessage} />
         <Display data={item} />
         <ItemList setRequestInfo={setRequestInfo} />
       </main>
