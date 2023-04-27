@@ -1,27 +1,16 @@
 import { Recipes } from "@/components";
 import styles from "./Display.module.scss";
 
-export default function Display({ data }) {
+export default function Display({ item }) {
+  if (!item) {
+    return <div className={styles.display}></div>;
+  }
+
   return (
     <div className={styles.display}>
-      {data ? (
-        <>
-          <h2>{data.itemName}</h2>
-          {data.recipes ? (
-            <Recipes recipes={data.recipes}>Recipes:</Recipes>
-          ) : (
-            ""
-          )}
-          {data.usedIn ? <Recipes recipes={data.usedIn}>Used in:</Recipes> : ""}
-          {Array.isArray(data) ? (
-            <Recipes recipes={data}>Recipes from hard drives:</Recipes>
-          ) : (
-            ""
-          )}
-        </>
-      ) : (
-        ""
-      )}
+      <h2>{item.itemName}</h2>
+      {item.recipes ? <Recipes recipes={item.recipes}>Recipes:</Recipes> : ""}
+      {item.usedIn ? <Recipes recipes={item.usedIn}>Used in:</Recipes> : ""}
     </div>
   );
 }

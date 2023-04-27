@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { satisfactoryPng, searchIconPng } from "@/assets/";
 import styles from "./Sidebar.module.scss";
+import { getHardDriveRecipes } from "@/utils/api";
 
-function Sidebar({ setRequestInfo, errorMessage }) {
+function Sidebar({ setItem, setItemNameSearch, errorMessage }) {
   const [inputValue, setInputValue] = useState("");
 
   const onInputChange = (event) => {
@@ -11,8 +12,13 @@ function Sidebar({ setRequestInfo, errorMessage }) {
 
   const onInputKeyDown = (event) => {
     if (event.key === "Enter") {
-      setRequestInfo({ itemName: inputValue, isItem: false });
+      setItemNameSearch(inputValue);
     }
+  };
+
+  const onBulkRecipeButtonClick = async () => {
+    const result = await getHardDriveRecipes();
+    setItem({ recipes: result });
   };
 
   return (
@@ -30,7 +36,7 @@ function Sidebar({ setRequestInfo, errorMessage }) {
         />
         <button
           onClick={() => {
-            setRequestInfo({ itemName: inputValue, isItem: false });
+            setItemNameSearch(inputValue);
           }}
         >
           <img src={searchIconPng} />
@@ -39,9 +45,7 @@ function Sidebar({ setRequestInfo, errorMessage }) {
       </div>
       <button
         className={styles.bulkRecipeButton}
-        onClick={() => {
-          setRequestInfo({ itemName: "bulk", isItem: false });
-        }}
+        onClick={onBulkRecipeButtonClick}
       >
         Recipes from hard drives
       </button>

@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "./ItemList.module.scss";
 import { getItems } from "@/utils/api";
 
-export default function ItemList({ setRequestInfo }) {
+export default function ItemList({ setItemName }) {
   const [itemNames, setItemNames] = useState([]);
 
   useEffect(() => {
@@ -19,7 +19,7 @@ export default function ItemList({ setRequestInfo }) {
           <li
             key={index}
             onClick={() => {
-              setRequestInfo({ itemName: item, isItem: true });
+              setItemName(item);
             }}
           >
             {item}

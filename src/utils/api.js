@@ -9,7 +9,7 @@ const getItemSearch = async (itemName) => {
   const response = await fetch(`${basePath}/item/search?input=${itemName}`);
 
   if (response.status == 400) {
-    const { message } = await result.json();
+    const { message } = await response.json();
     return {
       isError: true,
       message,
