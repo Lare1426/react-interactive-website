@@ -37,7 +37,12 @@ function Sidebar({ setRequestInfo, errorMessage }) {
         </button>
         <p className={styles.error}>{errorMessage}</p>
       </div>
-      <button className={styles.bulkRecipeButton}>
+      <button
+        className={styles.bulkRecipeButton}
+        onClick={() => {
+          setRequestInfo({ itemName: "bulk", isItem: false });
+        }}
+      >
         Recipes from hard drives
       </button>
     </div>

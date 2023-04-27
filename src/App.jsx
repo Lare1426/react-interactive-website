@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Sidebar, Display, ItemList } from "@/components";
-import { getItem, getItemSearch } from "@/utils/api";
+import { getHardDriveRecipes, getItem, getItemSearch } from "@/utils/api";
 import styles from "./App.module.scss";
 
 function App() {
@@ -18,7 +18,11 @@ function App() {
         if (requestInfo.isItem) {
           result = await getItem(requestInfo.itemName);
         } else {
-          result = await getItemSearch(requestInfo.itemName);
+          if ((requestInfo.itemName = "bulk")) {
+            result = await getHardDriveRecipes();
+          } else {
+            result = await getItemSearch(requestInfo.itemName);
+          }
         }
         if (result.status == 400) {
           const { message } = await result.json();

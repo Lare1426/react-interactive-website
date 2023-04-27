@@ -15,4 +15,9 @@ const getItems = async () => {
   return response.json();
 };
 
-export { getItem, getItemSearch, getItems };
+const getHardDriveRecipes = async () => {
+  const response = await fetch(`${basePath}/hard-drive-recipes.json`);
+  return response;
+};
+
+export { getItem, getItemSearch, getItems, getHardDriveRecipes };

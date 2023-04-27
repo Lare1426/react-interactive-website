@@ -13,6 +13,11 @@ export default function Display({ data }) {
             ""
           )}
           {data.usedIn ? <Recipes recipes={data.usedIn}>Used in:</Recipes> : ""}
+          {Array.isArray(data) ? (
+            <Recipes recipes={data}>Recipes from hard drives:</Recipes>
+          ) : (
+            ""
+          )}
         </>
       ) : (
         ""
