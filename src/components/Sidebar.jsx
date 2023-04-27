@@ -3,7 +3,7 @@ import { satisfactoryPng, searchIconPng } from "@/assets/";
 import styles from "./Sidebar.module.scss";
 import { getHardDriveRecipes } from "@/utils/api";
 
-function Sidebar({ setItem, setItemNameSearch, errorMessage }) {
+function Sidebar({ setDisplayData, setItemNameSearch, errorMessage }) {
   const [inputValue, setInputValue] = useState("");
 
   const onInputChange = (event) => {
@@ -18,7 +18,10 @@ function Sidebar({ setItem, setItemNameSearch, errorMessage }) {
 
   const onBulkRecipeButtonClick = async () => {
     const result = await getHardDriveRecipes();
-    setItem({ recipes: result });
+    setDisplayData({
+      header: "Recipes from hard drives:",
+      recipeGroups: [{ recipesArray: result }],
+    });
   };
 
   return (

@@ -5,9 +5,24 @@ import styles from "./App.module.scss";
 
 function App() {
   const [errorMessage, setErrorMessage] = useState("");
-  const [item, setItem] = useState();
+  const [displayData, setDisplayData] = useState();
   const [itemName, setItemName] = useState();
   const [itemNameSearch, setItemNameSearch] = useState();
+
+  const reconstructItem = (item) => {
+    const recipeGroups = [];
+    if (item.recipes) {
+      recipeGroups.push({ header: "Recipes:", recipesArray: item.recipes });
+    }
+    if (item.usedIn) {
+      recipeGroups.push({ header: "Used in:", recipesArray: item.usedIn });
+    }
+
+    return {
+      header: item.itemName,
+      recipeGroups,
+    };
+  };
 
   useEffect(() => {
     if (!itemName) {
@@ -15,8 +30,8 @@ function App() {
     }
 
     (async () => {
-      const result = await getItem(itemName);
-      setItem(result);
+      const item = await getItem(itemName);
+      setDisplayData(reconstructItem(item));
     })();
   }, [itemName]);
 
@@ -35,7 +50,7 @@ function App() {
         setErrorMessage(result.message);
         return;
       }
-      setItem(result);
+      setDisplayData(reconstructItem(result));
     })();
   }, [itemNameSearch]);
 
@@ -47,11 +62,11 @@ function App() {
       </header>
       <main className={styles.appMain}>
         <Sidebar
-          setItem={setItem}
+          setDisplayData={setDisplayData}
           setItemNameSearch={setItemNameSearch}
           errorMessage={errorMessage}
         />
-        <Display item={item} />
+        <Display data={displayData} />
         <ItemList setItemName={setItemName} />
       </main>
     </>

@@ -1,16 +1,19 @@
 import { Recipes } from "@/components";
 import styles from "./Display.module.scss";
 
-export default function Display({ item }) {
-  if (!item) {
+export default function Display({ data }) {
+  if (!data) {
     return <div className={styles.display}></div>;
   }
 
   return (
     <div className={styles.display}>
-      <h2>{item.itemName}</h2>
-      {item.recipes ? <Recipes recipes={item.recipes}>Recipes:</Recipes> : ""}
-      {item.usedIn ? <Recipes recipes={item.usedIn}>Used in:</Recipes> : ""}
+      <h2>{data.header}</h2>
+      {data.recipeGroups.map((recipeGroup, index) => (
+        <Recipes key={index} recipes={recipeGroup.recipesArray}>
+          {recipeGroup?.header}
+        </Recipes>
+      ))}
     </div>
   );
 }
