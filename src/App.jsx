@@ -18,7 +18,7 @@ function App() {
         if (requestInfo.isItem) {
           result = await getItem(requestInfo.itemName);
         } else {
-          if ((requestInfo.itemName = "bulk")) {
+          if (requestInfo.itemName === "bulk") {
             result = await getHardDriveRecipes();
           } else {
             result = await getItemSearch(requestInfo.itemName);
