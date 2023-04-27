@@ -2,12 +2,20 @@ const basePath = "https://satisfactory.laurivirta.com/recipes";
 
 const getItem = async (itemName) => {
   const response = await fetch(`${basePath}/item/${itemName}`);
-  return response;
+  return response.json();
 };
 
 const getItemSearch = async (itemName) => {
   const response = await fetch(`${basePath}/item/search?input=${itemName}`);
-  return response;
+
+  if (response.status == 400) {
+    const { message } = await result.json();
+    return {
+      isError: true,
+      message,
+    };
+  }
+  return response.json();
 };
 
 const getItems = async () => {
@@ -17,7 +25,7 @@ const getItems = async () => {
 
 const getHardDriveRecipes = async () => {
   const response = await fetch(`${basePath}/hard-drive-recipes.json`);
-  return response;
+  return response.json();
 };
 
 export { getItem, getItemSearch, getItems, getHardDriveRecipes };

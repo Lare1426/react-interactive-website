@@ -22,14 +22,13 @@ function App() {
             result = await getHardDriveRecipes();
           } else {
             result = await getItemSearch(requestInfo.itemName);
+            if (result.isError) {
+              setErrorMessage(result.message);
+              return;
+            }
           }
         }
-        if (result.status == 400) {
-          const { message } = await result.json();
-          setErrorMessage(message);
-          throw new Error(message);
-        }
-        setItem(await result.json());
+        setItem(result);
       })();
     }
   }, [requestInfo]);
