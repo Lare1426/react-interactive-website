@@ -2,7 +2,7 @@ import { useState } from "react";
 import { satisfactoryPng, searchIconPng } from "@/assets/";
 import styles from "./Sidebar.module.scss";
 
-function Sidebar({ setItemName }) {
+function Sidebar({ setRequestInfo }) {
   const [inputValue, setInputValue] = useState("");
 
   const onInputChange = (event) => {
@@ -11,7 +11,7 @@ function Sidebar({ setItemName }) {
 
   const onInputKeyDown = (event) => {
     if (event.key === "Enter") {
-      setItemName(inputValue);
+      setRequestInfo({ itemName: inputValue, isItem: false });
     }
   };
 
@@ -30,7 +30,7 @@ function Sidebar({ setItemName }) {
         />
         <button
           onClick={() => {
-            setItemName(inputValue);
+            setRequestInfo({ itemName: inputValue, isItem: false });
           }}
         >
           <img src={searchIconPng} />
