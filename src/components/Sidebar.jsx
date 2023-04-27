@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { satisfactoryPng, searchIconPng } from "@/assets/";
 import styles from "./Sidebar.module.scss";
-import { getHardDriveRecipes } from "@/utils/api";
+import { getItemSearch, getHardDriveRecipes } from "@/utils/api";
+import { reconstructItem } from "@/utils";
 
-function Sidebar({ setDisplayData, setItemNameSearch, errorMessage }) {
+function Sidebar({ setDisplayData }) {
   const [inputValue, setInputValue] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const onInputChange = (event) => {
     setInputValue(event.target.value);
@@ -12,8 +14,21 @@ function Sidebar({ setDisplayData, setItemNameSearch, errorMessage }) {
 
   const onInputKeyDown = (event) => {
     if (event.key === "Enter") {
-      setItemNameSearch(inputValue);
+      onInputSearch(inputValue);
     }
+  };
+
+  const onInputSearch = async (itemNameSearch) => {
+    if (errorMessage) {
+      setErrorMessage("");
+    }
+
+    const result = await getItemSearch(itemNameSearch);
+    if (result.isError) {
+      setErrorMessage(result.message);
+      return;
+    }
+    setDisplayData(reconstructItem(result));
   };
 
   const onBulkRecipeButtonClick = async () => {
@@ -39,7 +54,7 @@ function Sidebar({ setDisplayData, setItemNameSearch, errorMessage }) {
         />
         <button
           onClick={() => {
-            setItemNameSearch(inputValue);
+            onInputSearch(inputValue);
           }}
         >
           <img src={searchIconPng} />

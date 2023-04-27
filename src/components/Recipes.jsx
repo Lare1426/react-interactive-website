@@ -4,6 +4,7 @@ import styles from "./Recipes.module.scss";
 
 export default function Recipes({ children: header, recipes }) {
   const [isRotated, setIsRotated] = useState(false);
+
   return (
     <div className={styles.recipes}>
       {header && (

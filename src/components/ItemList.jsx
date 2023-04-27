@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import styles from "./ItemList.module.scss";
-import { getItems } from "@/utils/api";
+import { getItems, getItem } from "@/utils/api";
+import { reconstructItem } from "@/utils";
 
-export default function ItemList({ setItemName }) {
+export default function ItemList({ setDisplayData }) {
   const [itemNames, setItemNames] = useState([]);
 
   useEffect(() => {
@@ -12,16 +13,16 @@ export default function ItemList({ setItemName }) {
     })();
   }, []);
 
+  const onItemListClick = async (itemName) => {
+    const item = await getItem(itemName);
+    setDisplayData(reconstructItem(item));
+  };
+
   return (
     <div className={styles.itemList}>
       <ul>
         {itemNames.map((item, index) => (
-          <li
-            key={index}
-            onClick={() => {
-              setItemName(item);
-            }}
-          >
+          <li key={index} onClick={() => onItemListClick(item)}>
             {item}
           </li>
         ))}

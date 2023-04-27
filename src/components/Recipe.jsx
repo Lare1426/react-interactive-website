@@ -6,11 +6,7 @@ export default function Recipe({ data }) {
   const [isRotated, setIsRotated] = useState(false);
   return (
     <>
-      <h4
-        onClick={() => {
-          setIsRotated(!isRotated);
-        }}
-      >
+      <h4 onClick={() => setIsRotated(!isRotated)}>
         <TriangleSvg small={true} rotated={isRotated} />
         {data.name}
       </h4>
