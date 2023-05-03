@@ -18,8 +18,8 @@ export default function Recipes({ children: header, recipes }) {
         </h3>
       )}
       <div>
-        {recipes.map((recipe, index) => (
-          <Recipe key={index} data={recipe} />
+        {recipes.map((recipe) => (
+          <Recipe key={recipe.id} data={recipe} />
         ))}
       </div>
     </div>

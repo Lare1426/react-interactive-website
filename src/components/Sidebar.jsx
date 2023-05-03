@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { v4 as uuid } from "uuid";
 import { satisfactoryPng, searchIconPng } from "@/assets/";
 import styles from "./Sidebar.module.scss";
 import { getItemSearch, getHardDriveRecipes } from "@/utils/api";
@@ -35,7 +36,9 @@ function Sidebar({ setDisplayData }) {
     const result = await getHardDriveRecipes();
     setDisplayData({
       header: "Recipes from hard drives:",
-      recipeGroups: [{ recipesArray: result }],
+      recipeGroups: [
+        { recipesArray: result.map((recipe) => ({ ...recipe, id: uuid() })) },
+      ],
     });
   };
 
