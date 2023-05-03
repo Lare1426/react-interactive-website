@@ -3,7 +3,7 @@ import { TriangleSvg } from "@/components";
 import styles from "./Recipe.module.scss";
 import { toggleMaxHeight } from "@/utils";
 
-export default function Recipe({ data }) {
+export default function Recipe({ data, parent }) {
   const topLevelListRef = useRef();
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -11,7 +11,7 @@ export default function Recipe({ data }) {
     <>
       <h4
         onClick={() => {
-          toggleMaxHeight(topLevelListRef.current, isExpanded);
+          toggleMaxHeight(topLevelListRef.current, isExpanded, parent);
           setIsExpanded(!isExpanded);
         }}
       >

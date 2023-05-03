@@ -1,4 +1,4 @@
-import { Recipes } from "@/components";
+import { RecipeGroup } from "@/components";
 import styles from "./Display.module.scss";
 
 export default function Display({ data }) {
@@ -10,9 +10,7 @@ export default function Display({ data }) {
     <div className={styles.display}>
       <h2>{data.header}</h2>
       {data.recipeGroups.map((recipeGroup, index) => (
-        <Recipes key={index} recipes={recipeGroup.recipesArray}>
-          {recipeGroup?.header}
-        </Recipes>
+        <RecipeGroup key={index} recipeGroup={recipeGroup} />
       ))}
     </div>
   );

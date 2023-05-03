@@ -20,11 +20,22 @@ export const reconstructItem = (item) => {
   };
 };
 
-export const toggleMaxHeight = (element, isExpanded) => {
+export const toggleMaxHeight = (element, isExpanded, parent = null) => {
   if (isExpanded) {
     element.style.maxHeight = "0px";
   } else {
     const elementScrollHeight = element.scrollHeight;
     element.style.maxHeight = elementScrollHeight + "px";
+
+    if (parent) {
+      const parentMaxHeight = parseInt(parent.style.maxHeight);
+      const isParentAnimating = parentMaxHeight > parent.scrollHeight;
+      const parentHeight = isParentAnimating
+        ? parentMaxHeight
+        : parent.scrollHeight;
+
+      const updatedParentMaxHeight = elementScrollHeight + parentHeight;
+      parent.style.maxHeight = updatedParentMaxHeight + "px";
+    }
   }
 };

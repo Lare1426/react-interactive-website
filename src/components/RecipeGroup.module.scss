@@ -1,4 +1,4 @@
-.recipes {
+.recipe-group {
   h3 {
     font-size: 30px;
     margin: 20px 0 0 30px;
@@ -10,5 +10,11 @@
       color: #c0c0c0;
       cursor: pointer;
     }
+  }
+
+  .recipes {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
   }
 }
