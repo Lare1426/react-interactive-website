@@ -1,4 +1,4 @@
-const reconstructItem = (item) => {
+export const reconstructItem = (item) => {
   const recipeGroups = [];
   if (item.recipes) {
     recipeGroups.push({ header: "Recipes:", recipesArray: item.recipes });
@@ -13,4 +13,7 @@ const reconstructItem = (item) => {
   };
 };
 
-export { reconstructItem };
+export const updateMaxHeight = (element) => {
+  const elementScrollHeight = element.scrollHeight;
+  element.style.maxHeight = elementScrollHeight + "px";
+};

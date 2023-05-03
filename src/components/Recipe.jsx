@@ -1,16 +1,24 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { TriangleSvg } from "@/components";
 import styles from "./Recipe.module.scss";
+import { updateMaxHeight } from "@/utils";
 
 export default function Recipe({ data }) {
+  const topLevelListRef = useRef();
   const [isRotated, setIsRotated] = useState(false);
+
   return (
     <>
-      <h4 onClick={() => setIsRotated(!isRotated)}>
+      <h4
+        onClick={() => {
+          setIsRotated(!isRotated);
+          updateMaxHeight(topLevelListRef.current);
+        }}
+      >
         <TriangleSvg small={true} rotated={isRotated} />
         {data.name}
       </h4>
-      <ul className={styles.topLevelList}>
+      <ul className={styles.topLevelList} ref={topLevelListRef}>
         <li>Crafting time: {data.time}s</li>
         <li>
           Produced in:
