@@ -20,7 +20,11 @@ export const reconstructItem = (item) => {
   };
 };
 
-export const updateMaxHeight = (element) => {
-  const elementScrollHeight = element.scrollHeight;
-  element.style.maxHeight = elementScrollHeight + "px";
+export const toggleMaxHeight = (element, isExpanded) => {
+  if (isExpanded) {
+    element.style.maxHeight = "0px";
+  } else {
+    const elementScrollHeight = element.scrollHeight;
+    element.style.maxHeight = elementScrollHeight + "px";
+  }
 };
