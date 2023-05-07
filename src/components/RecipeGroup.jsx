@@ -15,7 +15,7 @@ export default function RecipeGroup({
       return;
     }
 
-    setIsExpanded(!isExpanded);
+    setIsExpanded(true);
     let childrenScrollHeight = 0;
     for (const recipe of recipeQueue) {
       toggleMaxHeight(recipe.ref, false);
@@ -66,6 +66,7 @@ export default function RecipeGroup({
             onLoad={
               !recipe.name.includes("Alternate") && expandOnLoad && onRecipeLoad
             }
+            adjustMaxHeight={adjustMaxHeight}
           />
         ))}
       </div>
