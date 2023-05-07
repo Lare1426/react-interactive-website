@@ -11,7 +11,7 @@ export default function Display({ data }) {
       <h2>{data.header}</h2>
       {data.recipeGroups.map((recipeGroup, index) => (
         <RecipeGroup
-          key={index}
+          key={recipeGroup.id}
           recipeGroup={recipeGroup}
           expandOnLoad={recipeGroup.header === "Recipes:"}
         />
