@@ -52,6 +52,7 @@ export default function RecipeGroup({
                 adjustMaxHeight(childrenScrollHeight);
               }
             }}
+            adjustParentMaxHeight={adjustMaxHeight}
           />
         ))}
       </div>
