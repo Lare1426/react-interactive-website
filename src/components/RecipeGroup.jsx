@@ -1,10 +1,11 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, useRef } from "react";
 import { TriangleSvg, Recipe } from "@/components";
 import styles from "./RecipeGroup.module.scss";
 import { toggleMaxHeight } from "@/utils";
 
 export default function RecipeGroup({
   recipeGroup: { header, recipesArray: recipes },
+  isToExpand,
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const recipeGroupRef = useRef();
@@ -43,7 +44,7 @@ export default function RecipeGroup({
           <Recipe
             key={recipe.id}
             data={recipe}
-            isToExpand={header === "Recipes:"}
+            isToExpand={isToExpand && !recipe.name.includes("Alternate")}
             expandParent={(childScrollHeight) => {
               childrenScrollHeight += childScrollHeight;
               if (!isExpanded) {

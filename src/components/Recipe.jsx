@@ -19,7 +19,7 @@ export default function Recipe({
   };
 
   useEffect(() => {
-    if (isToExpand && !data.name.includes("Alternate") && !isExpanded) {
+    if (isToExpand) {
       toggleMaxHeight(topLevelListRef.current, false);
       setIsExpanded(true);
       expandParent(topLevelListRef.current.scrollHeight);
