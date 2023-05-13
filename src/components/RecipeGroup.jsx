@@ -8,6 +8,7 @@ export default function RecipeGroup({
   isToExpand,
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
+  let [childrenScrollHeight, setChildrenScrollHeight] = useState(0);
   const recipeGroupRef = useRef();
 
   const expandRecipeGroup = () => {
@@ -29,8 +30,6 @@ export default function RecipeGroup({
     recipeGroupRef.current.style.maxHeight = updatedMaxHeight + "px";
   };
 
-  let childrenScrollHeight = 0;
-
   return (
     <div className={styles.recipeGroup}>
       {header && (
@@ -47,6 +46,7 @@ export default function RecipeGroup({
             isToExpand={isToExpand && !recipe.name.includes("Alternate")}
             expandParent={(childScrollHeight) => {
               childrenScrollHeight += childScrollHeight;
+              setChildrenScrollHeight(childrenScrollHeight);
               if (!isExpanded) {
                 toggleMaxHeight(recipeGroupRef.current, isExpanded);
                 setIsExpanded(true);
