@@ -3,10 +3,9 @@ import { TriangleSvg } from "@/components";
 import styles from "./Recipe.module.scss";
 import { toggleMaxHeight } from "@/utils";
 
-export default function Recipe({ data, parent, setIsNeededToExpand }) {
+export default function Recipe({ data, isToExpand, expandParent }) {
   const topLevelListRef = useRef();
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isToExpand, setIsToExpand] = useState(false);
 
   const expandList = () => {
     toggleMaxHeight(topLevelListRef.current, isExpanded, parent);
@@ -14,13 +13,12 @@ export default function Recipe({ data, parent, setIsNeededToExpand }) {
   };
 
   useEffect(() => {
-    expandList();
-    setIsNeededToExpand(true);
-  }, [isToExpand]);
-
-  if (data.name.includes("Alternate") && !isToExpand) {
-    setIsToExpand(true);
-  }
+    if (isToExpand && !data.name.includes("Alternate") && !isExpanded) {
+      toggleMaxHeight(topLevelListRef.current, isExpanded);
+      setIsExpanded(true);
+      expandParent(topLevelListRef.current.scrollHeight);
+    }
+  }, []);
 
   return (
     <>

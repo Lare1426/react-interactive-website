@@ -4,12 +4,14 @@ export const reconstructItem = (item) => {
   if (item.recipes) {
     recipeGroups.push({
       header: "Recipes:",
+      id: uuid(),
       recipesArray: item.recipes.map((recipe) => ({ ...recipe, id: uuid() })),
     });
   }
   if (item.usedIn) {
     recipeGroups.push({
       header: "Used in:",
+      id: uuid(),
       recipesArray: item.usedIn.map((recipe) => ({ ...recipe, id: uuid() })),
     });
   }
@@ -20,22 +22,11 @@ export const reconstructItem = (item) => {
   };
 };
 
-export const toggleMaxHeight = (element, isExpanded, parent = null) => {
+export const toggleMaxHeight = (element, isExpanded) => {
   if (isExpanded) {
     element.style.maxHeight = "0px";
   } else {
     const elementScrollHeight = element.scrollHeight;
     element.style.maxHeight = elementScrollHeight + "px";
-
-    if (parent) {
-      const parentMaxHeight = parseInt(parent.style.maxHeight);
-      const isParentAnimating = parentMaxHeight > parent.scrollHeight;
-      const parentHeight = isParentAnimating
-        ? parentMaxHeight
-        : parent.scrollHeight;
-
-      const updatedParentMaxHeight = elementScrollHeight + parentHeight;
-      parent.style.maxHeight = updatedParentMaxHeight + "px";
-    }
   }
 };
