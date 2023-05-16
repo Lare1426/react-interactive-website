@@ -5,6 +5,7 @@ import { toggleMaxHeight } from "@/utils";
 
 export default function RecipeGroup({
   recipeGroup: { header, recipesArray: recipes },
+  expandOnLoad,
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const recipeGroupRef = useRef();
@@ -18,6 +19,10 @@ export default function RecipeGroup({
   let childrenScrollHeight = 0;
 
   useEffect(() => {
+    if (!expandOnLoad) {
+      return;
+    }
+
     for (let i = 0; i < recipes.length; i++) {
       if (!recipes[i].name.includes("Alternate")) {
         const recipe = recipeComponents[i];

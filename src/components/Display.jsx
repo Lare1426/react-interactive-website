@@ -10,7 +10,11 @@ export default function Display({ data }) {
     <div className={styles.display}>
       <h2>{data.header}</h2>
       {data.recipeGroups.map((recipeGroup) => (
-        <RecipeGroup key={recipeGroup.id} recipeGroup={recipeGroup} />
+        <RecipeGroup
+          key={recipeGroup.id}
+          recipeGroup={recipeGroup}
+          expandOnLoad={recipeGroup.header === "Recipes:"}
+        />
       ))}
     </div>
   );
