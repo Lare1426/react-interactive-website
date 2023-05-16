@@ -14,7 +14,7 @@ export default function Recipe({ data, adjustParentMaxHeight, addRef }) {
   };
 
   useEffect(() => {
-    addRef(topLevelListRef);
+    addRef({ ref: topLevelListRef, setIsExpanded });
   }, []);
 
   return (

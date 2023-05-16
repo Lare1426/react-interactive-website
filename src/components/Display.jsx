@@ -9,8 +9,8 @@ export default function Display({ data }) {
   return (
     <div className={styles.display}>
       <h2>{data.header}</h2>
-      {data.recipeGroups.map((recipeGroup, index) => (
-        <RecipeGroup key={index} recipeGroup={recipeGroup} />
+      {data.recipeGroups.map((recipeGroup) => (
+        <RecipeGroup key={recipeGroup.id} recipeGroup={recipeGroup} />
       ))}
     </div>
   );

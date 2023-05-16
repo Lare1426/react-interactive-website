@@ -8,19 +8,27 @@ export default function RecipeGroup({
 }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const recipeGroupRef = useRef();
-  const [recipeRefs, setRecipeRefs] = useState([]);
+  const [recipeComponents, setRecipeComponents] = useState([]);
 
   const addRecipeRef = (ref) => {
-    recipeRefs.push(ref);
-    setRecipeRefs(recipeRefs);
+    recipeComponents.push(ref);
+    setRecipeComponents(recipeComponents);
   };
+
+  let childrenScrollHeight = 0;
 
   useEffect(() => {
     for (let i = 0; i < recipes.length; i++) {
       if (!recipes[i].name.includes("Alternate")) {
+        const recipe = recipeComponents[i];
+        toggleMaxHeight(recipe.ref.current, false);
+        recipe.setIsExpanded(true);
+        childrenScrollHeight += recipe.ref.current.scrollHeight;
       }
     }
-  }, recipeRefs);
+    setIsExpanded(true);
+    adjustMaxHeight(childrenScrollHeight);
+  }, recipeComponents);
 
   const expandRecipes = () => {
     toggleMaxHeight(recipeGroupRef.current, isExpanded);
