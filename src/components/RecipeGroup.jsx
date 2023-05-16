@@ -35,7 +35,7 @@ export default function RecipeGroup({
     adjustMaxHeight(childrenScrollHeight);
   }, recipeComponents);
 
-  const expandRecipes = () => {
+  const toggleRecipes = () => {
     toggleMaxHeight(recipeGroupRef.current, isExpanded);
     setIsExpanded(!isExpanded);
   };
@@ -57,7 +57,7 @@ export default function RecipeGroup({
   return (
     <div className={styles.recipeGroup}>
       {header && (
-        <h3 onClick={expandRecipes}>
+        <h3 onClick={toggleRecipes}>
           <TriangleSvg rotated={isExpanded} />
           {header}
         </h3>
