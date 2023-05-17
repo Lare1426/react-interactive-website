@@ -48,20 +48,22 @@ function Sidebar({ setDisplayData }) {
       <div className={styles.search}>
         <h2>Search</h2>
         <label>Enter the exact product you want below:</label>
-        <input
-          type="text"
-          placeholder="Product"
-          value={inputValue}
-          onChange={onInputChange}
-          onKeyDown={onInputKeyDown}
-        />
-        <button
-          onClick={() => {
-            onInputSearch(inputValue);
-          }}
-        >
-          <img src={searchIconPng} />
-        </button>
+        <div className={styles.searchRow}>
+          <input
+            type="text"
+            placeholder="Product"
+            value={inputValue}
+            onChange={onInputChange}
+            onKeyDown={onInputKeyDown}
+          />
+          <button
+            onClick={() => {
+              onInputSearch(inputValue);
+            }}
+          >
+            <img src={searchIconPng} />
+          </button>
+        </div>
         <p className={styles.error}>{errorMessage}</p>
       </div>
       <button
