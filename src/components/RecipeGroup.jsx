@@ -18,8 +18,7 @@ export default function RecipeGroup({
       return;
     }
 
-    for (let i = 0; i < recipes.length; i++) {
-      const recipe = recipes[i];
+    for (const recipe of recipes) {
       if (!recipe.name.includes("Alternate")) {
         const recipeRef = recipeRefs.current[recipe.id];
         recipeRef.expandRecipe();
