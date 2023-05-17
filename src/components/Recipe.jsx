@@ -5,14 +5,14 @@ import { toggleMaxHeight } from "@/utils";
 
 export default function Recipe({
   data,
+  adjustParentMaxHeight,
   isToExpand,
   expandParent,
-  adjustParentMaxHeight,
 }) {
   const topLevelListRef = useRef();
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const expandList = () => {
+  const toggleList = () => {
     toggleMaxHeight(topLevelListRef.current, isExpanded, parent);
     setIsExpanded(!isExpanded);
     adjustParentMaxHeight(topLevelListRef.current.scrollHeight);
@@ -28,7 +28,7 @@ export default function Recipe({
 
   return (
     <>
-      <h4 onClick={expandList}>
+      <h4 onClick={toggleList}>
         <TriangleSvg small={true} rotated={isExpanded} />
         {data.name}
       </h4>

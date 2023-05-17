@@ -11,7 +11,7 @@ export default function RecipeGroup({
   let [childrenScrollHeight, setChildrenScrollHeight] = useState(0);
   const recipeGroupRef = useRef();
 
-  const expandRecipeGroup = () => {
+  const toggleRecipeGroup = () => {
     toggleMaxHeight(recipeGroupRef.current, isExpanded);
     setIsExpanded(!isExpanded);
   };
@@ -30,10 +30,20 @@ export default function RecipeGroup({
     recipeGroupRef.current.style.maxHeight = updatedMaxHeight + "px";
   };
 
+  const expandRecipeGroup = (childScrollHeight) => {
+    childrenScrollHeight += childScrollHeight;
+    setChildrenScrollHeight(childrenScrollHeight);
+    if (!isExpanded) {
+      toggleMaxHeight(recipeGroupRef.current, isExpanded);
+      setIsExpanded(true);
+      adjustMaxHeight(childrenScrollHeight);
+    }
+  };
+
   return (
     <div className={styles.recipeGroup}>
       {header && (
-        <h3 onClick={expandRecipeGroup}>
+        <h3 onClick={toggleRecipeGroup}>
           <TriangleSvg rotated={isExpanded} />
           {header}
         </h3>
@@ -43,17 +53,9 @@ export default function RecipeGroup({
           <Recipe
             key={recipe.id}
             data={recipe}
-            isToExpand={isToExpand && !recipe.name.includes("Alternate")}
-            expandParent={(childScrollHeight) => {
-              childrenScrollHeight += childScrollHeight;
-              setChildrenScrollHeight(childrenScrollHeight);
-              if (!isExpanded) {
-                toggleMaxHeight(recipeGroupRef.current, isExpanded);
-                setIsExpanded(true);
-                adjustMaxHeight(childrenScrollHeight);
-              }
-            }}
             adjustParentMaxHeight={adjustMaxHeight}
+            isToExpand={isToExpand && !recipe.name.includes("Alternate")}
+            expandParent={expandRecipeGroup}
           />
         ))}
       </div>
