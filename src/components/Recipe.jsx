@@ -1,21 +1,30 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, forwardRef, useRef, useImperativeHandle } from "react";
 import { TriangleSvg } from "@/components";
 import styles from "./Recipe.module.scss";
 import { toggleMaxHeight } from "@/utils";
 
-export default function Recipe({ data, adjustParentMaxHeight, addRef }) {
-  const topLevelListRef = useRef();
+export default forwardRef(function Recipe(
+  { data, adjustParentMaxHeight },
+  ref
+) {
   const [isExpanded, setIsExpanded] = useState(false);
+  const topLevelListRef = useRef();
+
+  useImperativeHandle(ref, () => {
+    return {
+      scrollHeight: topLevelListRef.current.scrollHeight,
+      expandRecipe: () => {
+        toggleMaxHeight(topLevelListRef.current, false);
+        setIsExpanded(true);
+      },
+    };
+  });
 
   const toggleList = () => {
     toggleMaxHeight(topLevelListRef.current, isExpanded);
     setIsExpanded(!isExpanded);
     adjustParentMaxHeight(topLevelListRef.current.scrollHeight);
   };
-
-  useEffect(() => {
-    addRef({ ref: topLevelListRef, setIsExpanded });
-  }, []);
 
   return (
     <>
@@ -56,4 +65,4 @@ export default function Recipe({ data, adjustParentMaxHeight, addRef }) {
       </ul>
     </>
   );
-}
+});
