@@ -1,30 +1,34 @@
-import { useState, useRef, useEffect } from "react";
+import { useState, forwardRef, useRef, useImperativeHandle } from "react";
 import { TriangleSvg } from "@/components";
 import styles from "./Recipe.module.scss";
 import { toggleMaxHeight } from "@/utils";
 
-export default function Recipe({ data, parent, setIsNeededToExpand }) {
-  const topLevelListRef = useRef();
+export default forwardRef(function Recipe(
+  { data, adjustParentMaxHeight },
+  ref
+) {
   const [isExpanded, setIsExpanded] = useState(false);
-  const [isToExpand, setIsToExpand] = useState(false);
+  const topLevelListRef = useRef();
 
-  const expandList = () => {
-    toggleMaxHeight(topLevelListRef.current, isExpanded, parent);
+  useImperativeHandle(ref, () => {
+    return {
+      scrollHeight: topLevelListRef.current.scrollHeight,
+      expandRecipe: () => {
+        toggleMaxHeight(topLevelListRef.current, false);
+        setIsExpanded(true);
+      },
+    };
+  });
+
+  const toggleList = () => {
+    toggleMaxHeight(topLevelListRef.current, isExpanded);
     setIsExpanded(!isExpanded);
+    adjustParentMaxHeight(topLevelListRef.current.scrollHeight);
   };
-
-  useEffect(() => {
-    expandList();
-    setIsNeededToExpand(true);
-  }, [isToExpand]);
-
-  if (data.name.includes("Alternate") && !isToExpand) {
-    setIsToExpand(true);
-  }
 
   return (
     <>
-      <h4 onClick={expandList}>
+      <h4 onClick={toggleList}>
         <TriangleSvg small={true} rotated={isExpanded} />
         {data.name}
       </h4>
@@ -61,4 +65,4 @@ export default function Recipe({ data, parent, setIsNeededToExpand }) {
       </ul>
     </>
   );
-}
+});
